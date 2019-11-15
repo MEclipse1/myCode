@@ -1,5 +1,7 @@
 package com.dabu.firebase;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -8,10 +10,6 @@ import android.widget.TextView;
 
 import com.dabu.firebase.common.FireBaseUntil;
 import com.dabu.firebase.control.webView.MyWebViewClient;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends FragmentActivity {
     private static final String TAG = "MainActivity";
@@ -28,10 +26,10 @@ public class MainActivity extends FragmentActivity {
 
         textView = findViewById(R.id.textView2);
 
-        //给TextView赋值
+        //给TextView赋fireBase token的值
         FireBaseUntil.useFireBaseToken(token -> textView.setText(token));
 
-        //打印log
+        //打印 fireBase token log
         FireBaseUntil.useFireBaseToken(token -> Log.e(TAG, "onCreate: " + token));
 
 //        viewClient = new MyWebViewClient();

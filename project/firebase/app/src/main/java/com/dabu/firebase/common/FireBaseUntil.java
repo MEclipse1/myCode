@@ -1,30 +1,32 @@
 package com.dabu.firebase.common;
 
-import android.support.annotation.NonNull;
-
 import com.dabu.firebase.service.FireBase;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 
 import java.io.IOException;
 
 public class FireBaseUntil {
+    private static String token = null;
+
     /**
      * 获取fireBase令牌
      */
     public static void useFireBaseToken(final FireBase fireBase) {
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-            @Override
-            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+        /**
+         * 下面这段代码是为了减少请求次数，重用token
+         */
+        if (token != null)
+            fireBase.userTokens(token);
+        else {
+            FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task -> {
                 if (!task.isSuccessful()) {
                     return;
                 }
                 // Get new Instance ID token
-                fireBase.userTokens(task.getResult().getToken());
-            }
-        });
+                token = task.getResult().getToken();
+                fireBase.userTokens(token);
+            });
+        }
     }
 
     /**
