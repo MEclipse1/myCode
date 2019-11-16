@@ -1,0 +1,6 @@
+﻿设置git用户
+$ git config --global user.name "dabu"
+$ git config --global user.emall "574498858@qq.com"
+
+推送到远程仓库
+$ git push origin feature/f_0001
