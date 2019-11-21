@@ -1,0 +1,2 @@
+查询ios推送证书的有效期限
+openssl x509 -in server_certificates_bundle_sandbox.pem -noout -dates
