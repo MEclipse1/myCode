@@ -1,0 +1,42 @@
+查询ios推送证书的有效期限
+openssl x509 -in server_certificates_bundle_sandbox.pem -noout -dates
+
+查看进程
+ps aux | grep php
+
+查看端口号
+netstat -nltp
+
+关闭mySQL服务
+service mysql restart
+
+查看防火墙状态
+firewall-cmd --state
+
+systemctl stop firewalld.service #停止firewall
+systemctl disable firewalld.service #禁止firewall开机启动
+
+linux创建用户
+useradd testUser;
+linux 更改用户密码
+passwd testUser
+
+重启命令：
+
+1、reboot
+
+2、shutdown -r now 立刻重启(root用户使用)
+
+3、shutdown -r 10 过10分钟自动重启(root用户使用)
+
+4、shutdown -r 20:35 在时间为20:35时候重启(root用户使用)
+
+关机命令：
+
+1、halt 立刻关机
+
+2、poweroff 立刻关机
+
+3、shutdown -h now 立刻关机(root用户使用)
+
+4、shutdown -h 10 10分钟后自动关机

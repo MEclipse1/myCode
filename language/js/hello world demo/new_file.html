@@ -1,0 +1,26 @@
+<!DOCTYPE >
+<html>
+	<meta charset="utf-8" />
+	<script src="jquery-1.10.2.js" type="text/javascript"></script>
+	<script>
+		$(function () {
+			$.fn.fileupload = function() {
+				return this.each(function(){
+					alert("123");
+				});
+			}
+			$('body').on('click.fileupload.data-api', '[data-provides="fileupload"]', function(e) {
+				// e 点击对象的相关信息(更全面)
+				// $this 点击对象的信息 
+				var $this = $(this)
+				$this.fileupload();
+			});
+		});
+	</script>
+	<body>
+		<div data-provides="fileupload">123</div>
+		<div data-provides="fileupload">123</div>
+		<div data-provides="fileupload">123</div>
+		<div data-provides="fileupload">123</div>
+	</body>
+</html>

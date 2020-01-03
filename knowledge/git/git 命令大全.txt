@@ -1,0 +1,24 @@
+﻿设置git用户
+$ git config --global user.name "dabu"
+$ git config --global user.emall "574498858@qq.com"
+
+推送到远程仓库
+$ git push origin feature/f_0001
+
+还原之前的版本
+git reset --hard 82e33f386c9f6aa1253da595cc67805820ef7420
+
+创建tag
+git tag 1.1.1
+
+查看tag
+git tag
+
+将tagpush到远程仓库
+$ git push origin --tags
+
+删除tag
+git tag -d tagName 删除tag
+
+删除远程仓库tag
+git push origin :refs/tags/tagName  删除远程
