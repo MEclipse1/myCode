@@ -4,21 +4,68 @@
 	<script src="jquery-1.10.2.js" type="text/javascript"></script>
 	<script>
 		$(function () {
-			$.fn.fileupload = function() {
+			
+			/**
+			 *  定义一个对象
+			 * @param {Object} element 点击的元素
+			 * @param {Object} options 点击的元素的data（）
+			 */
+			var Fileupload = function(element, options) {
+				// 把点击的元素jquery化
+				this.$element = $(element)
+				// 获取点击元素的类型
+				this.type = this.$element.data('uploadtype') || (this.$element.find('.thumbnail').length > 0 ? "image" : "file")
+				
+				// 选择 type="file" 的 <input> 元素：
+				this.$input = this.$element.find(':file')
+				
+				this.name = this.$input.attr('name') || options.name
+				this.$hidden = this.$element.find('input[type=hidden][name="'+this.name+'"]')
+				if (this.$hidden.length === 0) {
+				      this.$hidden = $('<input type="hidden" />')
+				      this.$element.prepend(this.$hidden) //prepend() 方法在被选元素的开头（仍位于内部）插入指定内容。
+				}
+				
+				// 查找带有fileupload-perview的类,并设置line-height等于height
+				this.$preview = this.$element.find('.fileupload-preview')
+				var height = this.$preview.css('height')
+				if (this.$preview.css('display') != 'inline' && height != '0px' && height != 'none') 
+					this.$preview.css('line-height', height) // 设置css样式
+				
+			}
+			
+			/**
+			 * 定义了一个方法
+			 * @param {Object} options data（）方法的数据集
+			 */
+			$.fn.fileupload = function(options) {
 				return this.each(function(){
-					alert("123");
+					var $this = $(this);
+					data = $this.data('fileupload');//jquery获取fileuoload对应的值
+					if(!data) { //判断是否是undefined 类型 如果是进入这个方法
+						$this.data('fileupload',new Fileupload(this, options));
+					}
+					if(typeof options == 'string') {
+						data[options]();
+					}
 				});
 			}
 			$('body').on('click.fileupload.data-api', '[data-provides="fileupload"]', function(e) {
 				// e 点击对象的相关信息(更全面)
 				// $this 点击对象的信息 
 				var $this = $(this)
-				$this.fileupload();
+				
+				//当第一次点击的时候data方法里没有fileupload的值,
+				//当第二次点击的时候data方法里有fileuoload的值,程序终止.(在第12行添加的fileupload的值)
+				if ($this.data('fileupload')) return 
+				$this.fileupload($this.data());
 			});
 		});
 	</script>
 	<body>
-		<div data-provides="fileupload">123</div>
+		<div data-provides="fileupload" data-uploadtype="file" data-name="input">
+			<input type="file">
+		</div>
 		<div data-provides="fileupload">123</div>
 		<div data-provides="fileupload">123</div>
 		<div data-provides="fileupload">123</div>

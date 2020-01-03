@@ -42,4 +42,13 @@
 	//each方法走一次
 	<div data-provides="fileupload">123</div>
 	<div data-provides="fileupload">123</div>
+
+#### 6. $this.data('provides')方法可以获取属性为data-provides的值
+	$.fn.fileupload = function() {
+				return this.each(function(){
+					var $this = $(this); 
+					data = $this.data('provides');//获取data属性的值
+					alert(data);
+				});
+			}
 	
