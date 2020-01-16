@@ -22,3 +22,6 @@ git tag -d tagName 删除tag
 
 删除远程仓库tag
 git push origin :refs/tags/tagName  删除远程
+
+merge特定文件夹代码
+git checkout [branch] -- [file name]
