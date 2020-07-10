@@ -1,0 +1,20 @@
+### 绘制流程图 Flowchart
+```flow
+st=>start: 开始
+op=>operation: SplashActivity 33Line 【启动页面】 finish
+op1=>operation: WebViewActivity 373Line 【加载登陆url】 
+op3=>operation: WebViewActivity 179Line  【shouldOverrideUrlLoading() 点击登陆】 finish
+op4=>operation: 跳转到MainActivity 
+op5=>operation: 扫码结束
+op6=>operation: MainActivity 75Line  【扫码成功】finish
+op7=>operation: WebViewActivity 363Line 【加载二维码里url】
+op8=>operation:  WebViewActivity 215Line  【shouldOverrideUrlLoading() 点击返回】
+e=>end: 结束
+
+cond1=>condition: 登陆成功?
+
+st->op->op1->op3->cond1
+cond1(no)->op1
+cond1(yes)->op4->op5->op6->op7->op8->e
+```
+[========]
